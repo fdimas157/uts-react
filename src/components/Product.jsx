@@ -27,9 +27,9 @@ export default function Product({
           {"(" + category + ")"}
         </p>
         <div>
-          <button className="button">
+          <button className="button" >
             <BsFillCartPlusFill />
-            
+
           </button>
           <button className="button">
             <AiFillEdit />

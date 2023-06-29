@@ -116,9 +116,9 @@ export default function Home() {
   return (
     <div className="products">
       <header>
-        <button className="button" onClick={() => (
-            setNewProduct(true)
-        )}>Tambah</button>
+        <button className="button" onClick={() => setNewProduct(true)}>
+          Tambah
+        </button>
         <label>
           Cari:
           <input
@@ -162,9 +162,10 @@ export default function Home() {
             <option value="desc">Turun</option>
           </select>
         </section>
-        <Button nama={"(" + idSquence + ")" + "Keranjang"} onClick={() => (
-            setNewProduct(true)
-        )}/>
+        <Button
+          nama={"(" + idSquence + ")" + "Keranjang"}
+          onClick={() => setNewProduct(true)}
+        />
       </header>
       <main>
         {filteredSortedProducts.length > 0
@@ -181,13 +182,15 @@ export default function Home() {
       </main>
       <footer>
         <label>
-            Produk Per Halaman
-            <input type="number" />
+          Produk Per Halaman
+          <input type="number" />
         </label>
 
-        <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
-          Sebelumnya
-        </Button>
+        <Button
+          nama={"Sebelumnya"}
+          onClick={() => setPage(page - 1)}
+          disabled={page === 1}
+        ></Button>
         {filteredSortedProducts
           .filter((_product, i) => i % 4 === 0)
           .map((_product, i) => (
@@ -201,97 +204,94 @@ export default function Home() {
             </button>
           ))}
         <Button
+          nama={"Berikutnya"}
           onClick={() => setPage(page + 1)}
           disabled={page === Math.ceil(filteredSortedProducts.length / 4)}
-        >
-          Berikutnya
-        </Button>
+        ></Button>
       </footer>
       <div>
         {newProduct && (
-            <form className="card dialog">
-                <h1>Tambah Product</h1>
-                <label>
-                    Nama
-                    <input type="text" />
-                </label>
-                <label>
-                    Harga
-                    <input type="number" />
-                </label>
-                <label>
-                    Gambar
-                    <input type="url" />
-                </label>
-                <label>
-                    Kategori
-                    <select name="" id="">
-                        <option value="Laptop">Laptop</option>
-                        <option value="Smartphone">Smaprtphone</option>
-                        <option value="Headset">Headset</option>
-                        <option value="Watch">Watch</option>
-                    </select>
-                </label>
-                <div>
-                    <Button nama={"Batal"} onClick={(e)=> (
-                        setNewProduct(false)
-                    )}/>
-                    <Button nama={"Simpan"} />
-                </div>
-            </form>
+          <form className="card dialog">
+            <h1>Tambah Product</h1>
+            <label>
+              Nama
+              <input type="text" />
+            </label>
+            <label>
+              Harga
+              <input type="number" />
+            </label>
+            <label>
+              Gambar
+              <input type="url" />
+            </label>
+            <label>
+              Kategori
+              <select name="" id="">
+                <option value="Laptop">Laptop</option>
+                <option value="Smartphone">Smaprtphone</option>
+                <option value="Headset">Headset</option>
+                <option value="Watch">Watch</option>
+              </select>
+            </label>
+            <div>
+              <Button nama={"Batal"} onClick={(e) => setNewProduct(false)} />
+              <Button nama={"Simpan"} />
+            </div>
+          </form>
         )}
       </div>
       <div>
         {editedProduct && (
-        <form
-          className="dialog"
-          onSubmit={(e) => {
-            e.preventDefault();
-            setProducts(
-              products.map((product) =>
-                product.id === editedProduct.id ? editedProduct : product
-              )
-            );
-            setEditedProduct(undefined);
-          }}
-        >
-          <h1>Edit Produk</h1>
-          <label>
-            Nama
-            <input
-              type="text"
-              value={editedProduct.name}
-              onChange={(e) =>
-                setEditedProduct({ ...editedProduct, name: e.target.value })
-              }
-              autoFocus
-            />
-          </label>
-          <label>
-            Harga
-            <input
-              type="number"
-              value={editedProduct.price}
-              onChange={(e) =>
-                setEditedProduct({
-                  ...editedProduct,
-                  price: parseInt(e.target.value),
-                })
-              }
-            />
-          </label>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <Button
-              type="reset"
-              variant="tonal"
-              onClick={() => setEditedProduct(undefined)}
-            >
-              Batal
-            </Button>
-            <Button>Simpan</Button>
-          </div>
-        </form>
-      )}
+          <form
+            className="dialog"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setProducts(
+                products.map((product) =>
+                  product.id === editedProduct.id ? editedProduct : product
+                )
+              );
+              setEditedProduct(undefined);
+            }}
+          >
+            <h1>Edit Produk</h1>
+            <label>
+              Nama
+              <input
+                type="text"
+                value={editedProduct.name}
+                onChange={(e) =>
+                  setEditedProduct({ ...editedProduct, name: e.target.value })
+                }
+                autoFocus
+              />
+            </label>
+            <label>
+              Harga
+              <input
+                type="number"
+                value={editedProduct.price}
+                onChange={(e) =>
+                  setEditedProduct({
+                    ...editedProduct,
+                    price: parseInt(e.target.value),
+                  })
+                }
+              />
+            </label>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <Button
+                type="reset"
+                variant="tonal"
+                onClick={() => setEditedProduct(undefined)}
+              >
+                Batal
+              </Button>
+              <Button nama={"Simpan"} />
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );

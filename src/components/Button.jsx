@@ -3,6 +3,6 @@ export default function Button({ variant = "filled", className, ...props }){
         <button
       className={`button ${variant && `button-${variant}`} ${className}`}
       {...props}
-    />
+    >{props.nama}</button>
     );
 }
